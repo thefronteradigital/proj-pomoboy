@@ -1,0 +1,5 @@
+{
+  "name": "Pomofocus Clone",
+  "description": "A fully functional Pomodoro timer with customizable settings, dynamic themes, and task tracking, styled with Tailwind CSS.",
+  "requestFramePermissions": []
+}
