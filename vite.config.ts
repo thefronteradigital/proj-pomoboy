@@ -12,6 +12,12 @@ export default defineConfig(({ mode }) => {
     server: {
       port: 3000,
       host: '0.0.0.0',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      mime: {
+        '.xml': 'application/xml; charset=UTF-8',
+      },
     },
     build: {
       outDir: 'dist',
