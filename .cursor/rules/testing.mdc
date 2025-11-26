@@ -1,0 +1,26 @@
+---
+globs: *.test.ts,*.test.tsx,*.spec.ts,*.spec.tsx
+---
+
+# Testing Best Practices
+
+**Test:**
+
+- User-facing behavior (UI, interactions)
+- Business logic & data transformations
+- Error handling & edge cases
+- Loading & success states
+
+**Don't test:**
+
+- Internal implementation (hooks, internal state)
+- Third-party libraries (React Query, Zod)
+- Trivial code (getters, one-liners)
+
+**Patterns:**
+
+- Descriptive names: `test('displays error when login fails')`
+- Always test loading & error states
+- Mock APIs & libraries
+- Factory functions for test data
+- Tests must be independent & runnable in any order
