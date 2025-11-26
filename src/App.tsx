@@ -2,10 +2,13 @@ import React, { useCallback, useEffect } from "react";
 import type { Settings, TimerMode } from "@/types";
 import { soundManager } from "@/utils/sound";
 import { useTimer, useTimerMode, useSettings, useDocumentTitle } from "@/hooks";
-import { Header } from "@/components/Header";
-import { GameBoyScreen } from "@/components/GameBoyScreen";
-import { GameBoyControls } from "@/components/GameBoyControls";
-import { SettingsModal } from "@/components/SettingsModal";
+import {
+  Header,
+  GameBoyScreen,
+  GameBoyControls,
+  SettingsModal,
+  SEO,
+} from "@/components";
 
 const App: React.FC = () => {
   // Custom hooks for state management
@@ -121,43 +124,46 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center py-8 px-4 font-pixel select-none">
-      <Header />
+    <>
+      <SEO />
+      <div className="min-h-screen flex flex-col items-center justify-center py-8 px-4 font-pixel select-none">
+        <Header />
 
-      {/* Game Boy Case */}
-      <div className="relative bg-gb-bg w-[320px] sm:w-[350px] h-[580px] rounded-t-xl rounded-bl-xl rounded-br-[60px] shadow-[15px_15px_0_rgba(0,0,0,0.15)] flex flex-col items-center p-6 border-r-4 border-b-4 border-black/10">
-        {/* Top Groove Decoration */}
-        <div className="absolute top-0 left-4 right-4 h-4 border-b-2 border-black/5 opacity-50"></div>
-        <div className="absolute top-0 left-0 w-full h-1 bg-white/40 rounded-t-xl"></div>
+        {/* Game Boy Case */}
+        <div className="relative bg-gb-bg w-[320px] sm:w-[350px] h-[580px] rounded-t-xl rounded-bl-xl rounded-br-[60px] shadow-[15px_15px_0_rgba(0,0,0,0.15)] flex flex-col items-center p-6 border-r-4 border-b-4 border-black/10">
+          {/* Top Groove Decoration */}
+          <div className="absolute top-0 left-4 right-4 h-4 border-b-2 border-black/5 opacity-50"></div>
+          <div className="absolute top-0 left-0 w-full h-1 bg-white/40 rounded-t-xl"></div>
 
-        <GameBoyScreen
-          mode={mode}
-          cycleCount={cycleCount}
-          timeLeft={timer.timeLeft}
-          isActive={timer.isActive}
-        />
+          <GameBoyScreen
+            mode={mode}
+            cycleCount={cycleCount}
+            timeLeft={timer.timeLeft}
+            isActive={timer.isActive}
+          />
 
-        <GameBoyControls
-          onPrevMode={handlePrevModeWithSound}
-          onNextMode={handleNextModeWithSound}
-          onToggleTimer={handleToggleTimer}
-          onResetTimer={handleResetTimer}
-          onOpenSettings={handleOpenSettings}
+          <GameBoyControls
+            onPrevMode={handlePrevModeWithSound}
+            onNextMode={handleNextModeWithSound}
+            onToggleTimer={handleToggleTimer}
+            onResetTimer={handleResetTimer}
+            onOpenSettings={handleOpenSettings}
+          />
+        </div>
+
+        <div className="fixed bottom-4 text-xs text-white/50 text-center w-full hidden sm:block">
+          Controls: A/Start = Toggle | B = Reset | D-Pad = Change Mode | Select
+          = Settings
+        </div>
+
+        <SettingsModal
+          isOpen={isSettingsOpen}
+          onClose={closeSettings}
+          settings={settings}
+          onSave={handleSettingsSave}
         />
       </div>
-
-      <div className="fixed bottom-4 text-xs text-white/50 text-center w-full hidden sm:block">
-        Controls: A/Start = Toggle | B = Reset | D-Pad = Change Mode | Select =
-        Settings
-      </div>
-
-      <SettingsModal
-        isOpen={isSettingsOpen}
-        onClose={closeSettings}
-        settings={settings}
-        onSave={handleSettingsSave}
-      />
-    </div>
+    </>
   );
 };
 

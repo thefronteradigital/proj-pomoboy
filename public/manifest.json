@@ -1,0 +1,30 @@
+{
+  "name": "Pomoboy - Game Boy Pomodoro Timer",
+  "short_name": "Pomoboy",
+  "description": "A retro Game Boy-styled Pomodoro timer for productivity",
+  "theme_color": "#9bbc0f",
+  "background_color": "#9bbc0f",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/pwa-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/pwa-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

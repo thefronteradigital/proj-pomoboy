@@ -6,4 +6,5 @@ export { ActionButtons } from "./ActionButtons";
 export { StartSelectButtons } from "./StartSelectButtons";
 export { SpeakerGrille } from "./SpeakerGrille";
 export { SettingsModal } from "./SettingsModal";
+export { SEO } from "./SEO";
 
