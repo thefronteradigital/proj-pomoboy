@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply box-border;
+  }
+
+  html,
+  body,
+  #root {
+    @apply w-full h-full;
+  }
+
+  body {
+    @apply bg-[#d8b4e2] font-pixel overflow-x-hidden;
+  }
+}
+
+@layer components {
+  button {
+    @apply cursor-pointer select-none;
+  }
+
+  a {
+    @apply no-underline;
+  }
+}
+
