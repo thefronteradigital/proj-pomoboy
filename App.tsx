@@ -124,7 +124,27 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-8 px-4 font-pixel select-none">
+    <div className="min-h-screen flex flex-col items-center justify-center py-8 px-4 font-pixel select-none">
+      
+      {/* Title Section */}
+      <div className="mb-8 text-center">
+        <div className="text-5xl font-bold mb-2" style={{
+          background: 'linear-gradient(90deg, #0066FF 0%, #00CC00 25%, #FF0000 50%, #FFCC00 75%, #FF6600 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text'
+        }}>
+          POMOBOY
+        </div>
+        <a 
+          href="https://frontera.my.id" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-sm font-bold text-gray-800 hover:text-blue-600 transition-colors"
+        >
+          frontera<sup className="text-xs">®</sup>
+        </a>
+      </div>
       
       {/* Game Boy Case */}
       <div className="relative bg-gb-bg w-[320px] sm:w-[350px] h-[580px] rounded-t-xl rounded-bl-xl rounded-br-[60px] shadow-[15px_15px_0_rgba(0,0,0,0.15)] flex flex-col items-center p-6 border-r-4 border-b-4 border-black/10">
@@ -145,22 +165,22 @@ const App: React.FC = () => {
           </div>
 
           {/* Actual Screen */}
-          <div className="bg-gb-screen w-full h-full shadow-[inset_3px_3px_5px_rgba(0,0,0,0.2)] border-4 border-[#8bac0f] flex flex-col items-center justify-between p-4 relative overflow-hidden">
+          <div className="bg-gb-screen w-full h-full shadow-[inset_3px_3px_5px_rgba(0,0,0,0.2)] border-4 border-[#8bac0f] flex flex-col items-center justify-between p-3 relative overflow-hidden">
              
              {/* Pixel Grid Overlay (Optional effect) */}
              <div className="absolute inset-0 bg-[linear-gradient(rgba(15,56,15,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,56,15,0.05)_1px,transparent_1px)] bg-[size:3px_3px] pointer-events-none"></div>
 
              {/* Screen Content */}
-             <div className="w-full flex justify-between items-end border-b-2 border-gb-pixel/30 pb-1 mb-2 z-10">
-                <span className="text-gb-pixel text-xs">{MODE_LABELS[mode]}</span>
-                <span className="text-gb-pixel text-[10px]">#{cycleCount}</span>
+             <div className="w-full flex justify-between items-end border-b-2 border-gb-pixel/30 pb-1 mb-2 z-10 gap-2">
+                <span className="text-gb-pixel text-[8px] leading-tight truncate flex-1">{MODE_LABELS[mode]}</span>
+                <span className="text-gb-pixel text-[10px] whitespace-nowrap">#{cycleCount}</span>
              </div>
 
-             <div className="flex-1 flex flex-col items-center justify-center z-10 w-full">
-                <div className="text-gb-pixel text-6xl tracking-widest leading-none font-bold">
+             <div className="flex-1 flex flex-col items-center justify-center z-10 w-full px-1">
+                <div className="text-gb-pixel text-4xl tracking-tight leading-none font-bold">
                   {formatTime(timeLeft)}
                 </div>
-                <div className="mt-4 text-gb-pixel text-xs animate-pulse">
+                <div className="mt-2 text-gb-pixel text-[10px] animate-pulse whitespace-nowrap">
                   {isActive ? '► RUNNING' : '❚❚ PAUSED'}
                 </div>
              </div>
@@ -172,12 +192,8 @@ const App: React.FC = () => {
                 <div className={`text-[8px] text-gb-pixel ${mode === 'longBreak' ? 'bg-gb-pixel text-gb-screen px-1' : 'opacity-50'}`}>LONG</div>
              </div>
 
-          </div>
-
-          <div className="mt-2 text-[#999] text-xs font-serif italic tracking-wide">
-            Nintendo <span className="font-bold">GAME BOY</span>
-          </div>
-        </div>
+           </div>
+         </div>
 
         {/* Controls Area */}
         <div className="w-full flex-1 relative">

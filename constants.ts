@@ -10,7 +10,7 @@ export const DEFAULT_SETTINGS: Settings = {
 };
 
 export const MODE_LABELS: Record<TimerMode, string> = {
-  pomodoro: 'POMODORO',
-  shortBreak: 'SHORT BRK',
-  longBreak: 'LONG BRK',
+  pomodoro: 'FOCUS',
+  shortBreak: 'BREAK',
+  longBreak: 'LONG BREAK',
 };
