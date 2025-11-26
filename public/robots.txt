@@ -3,5 +3,5 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://frontera.my.id/sitemap.xml
+Sitemap: https://pomoboy.frontera.my.id/sitemap.xml
 

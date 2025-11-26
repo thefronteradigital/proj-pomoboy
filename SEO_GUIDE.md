@@ -50,7 +50,7 @@ Implemented Schema.org WebApplication markup:
   "@type": "WebApplication",
   "name": "Pomoboy",
   "description": "...",
-  "url": "https://frontera.my.id",
+  "url": "https://pomoboy.frontera.my.id",
   "applicationCategory": "ProductivityApplication",
   "operatingSystem": "Web Browser",
   "offers": { "price": "0" },
@@ -82,7 +82,7 @@ Implemented Schema.org WebApplication markup:
 ```
 User-agent: *
 Allow: /
-Sitemap: https://frontera.my.id/sitemap.xml
+Sitemap: https://pomoboy.frontera.my.id/sitemap.xml
 ```
 
 #### sitemap.xml
@@ -166,7 +166,7 @@ function AboutPage() {
         title="About Pomoboy"
         description="Learn about our Game Boy-inspired Pomodoro timer"
         keywords="about, pomodoro, game boy timer"
-        canonicalUrl="https://frontera.my.id/about"
+        canonicalUrl="https://pomoboy.frontera.my.id/about"
       />
       {/* Your page content */}
     </>

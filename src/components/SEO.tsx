@@ -24,9 +24,9 @@ export const SEO: React.FC<SEOProps> = ({
   ogImage = "/og-image.png",
   ogType = "website",
   twitterCard = "summary_large_image",
-  canonicalUrl = "https://frontera.my.id",
+  canonicalUrl = "https://pomoboy.frontera.my.id",
 }) => {
-  const siteUrl = "https://frontera.my.id";
+  const siteUrl = "https://pomoboy.frontera.my.id";
   const fullTitle = title.includes("Pomoboy") ? title : `${title} | Pomoboy`;
 
   return (
