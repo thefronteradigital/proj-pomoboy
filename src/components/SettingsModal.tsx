@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { X } from 'lucide-react';
+import React, { useState, useEffect } from "react";
 import type { Settings } from "@/types";
+import { ModalHeader } from "./settings/ModalHeader";
+import { ModalFooter } from "./settings/ModalFooter";
+import { TimerInput } from "./settings/TimerInput";
+import { ToggleSwitch } from "./settings/ToggleSwitch";
 
 interface SettingsModalProps {
   isOpen: boolean;
@@ -9,6 +12,9 @@ interface SettingsModalProps {
   onSave: (newSettings: Settings) => void;
 }
 
+/**
+ * Settings modal component
+ */
 export const SettingsModal: React.FC<SettingsModalProps> = ({
   isOpen,
   onClose,
@@ -21,7 +27,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     setLocalSettings(settings);
   }, [settings, isOpen]);
 
-  const handleChange = (key: keyof Settings, value: any) => {
+  const handleChange = (key: keyof Settings, value: number | boolean) => {
     setLocalSettings((prev) => ({
       ...prev,
       [key]: value,
@@ -44,13 +50,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
         className="bg-[#9bbc0f] border-4 border-[#0f380f] w-full max-w-md p-1 shadow-[8px_8px_0px_rgba(0,0,0,0.5)] transform scale-100"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="bg-[#0f380f] text-[#9bbc0f] px-4 py-2 flex justify-between items-center mb-4">
-          <h2 className="text-xs tracking-widest uppercase">Configuration</h2>
-          <button onClick={onClose} className="hover:text-white">
-            <X size={16} />
-          </button>
-        </div>
+        <ModalHeader title="Configuration" onClose={onClose} />
 
         {/* Body */}
         <div className="px-4 py-2 space-y-6 text-[#0f380f]">
@@ -61,82 +61,43 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             </h3>
 
             <div className="grid grid-cols-1 gap-4">
-              <div className="flex justify-between items-center">
-                <label className="text-xs uppercase">Pomodoro</label>
-                <input
-                  type="number"
-                  value={localSettings.pomodoro}
-                  onChange={(e) => handleChange('pomodoro', Number(e.target.value))}
-                  className="w-20 bg-[#8bac0f] border-2 border-[#0f380f] p-1 text-right focus:outline-none focus:bg-[#9bbc0f]"
-                />
-              </div>
-              <div className="flex justify-between items-center">
-                <label className="text-xs uppercase">Short Break</label>
-                <input
-                  type="number"
-                  value={localSettings.shortBreak}
-                  onChange={(e) => handleChange('shortBreak', Number(e.target.value))}
-                  className="w-20 bg-[#8bac0f] border-2 border-[#0f380f] p-1 text-right focus:outline-none focus:bg-[#9bbc0f]"
-                />
-              </div>
-              <div className="flex justify-between items-center">
-                <label className="text-xs uppercase">Long Break</label>
-                <input
-                  type="number"
-                  value={localSettings.longBreak}
-                  onChange={(e) => handleChange('longBreak', Number(e.target.value))}
-                  className="w-20 bg-[#8bac0f] border-2 border-[#0f380f] p-1 text-right focus:outline-none focus:bg-[#9bbc0f]"
-                />
-              </div>
+              <TimerInput
+                label="Pomodoro"
+                value={localSettings.pomodoro}
+                onChange={(value) => handleChange("pomodoro", value)}
+              />
+              <TimerInput
+                label="Short Break"
+                value={localSettings.shortBreak}
+                onChange={(value) => handleChange("shortBreak", value)}
+              />
+              <TimerInput
+                label="Long Break"
+                value={localSettings.longBreak}
+                onChange={(value) => handleChange("longBreak", value)}
+              />
             </div>
 
             <div className="border-t-2 border-[#0f380f] border-dashed my-4"></div>
 
-            <div
-              className="flex items-center justify-between cursor-pointer"
-              onClick={() => handleChange('autoStartBreaks', !localSettings.autoStartBreaks)}
-            >
-              <h3 className="text-xs uppercase">Auto Start Breaks</h3>
-              <div
-                className={`w-4 h-4 border-2 border-[#0f380f] flex items-center justify-center ${
-                  localSettings.autoStartBreaks ? 'bg-[#0f380f]' : 'bg-[#9bbc0f]'
-                }`}
-              >
-                {localSettings.autoStartBreaks && <div className="w-2 h-2 bg-[#9bbc0f]"></div>}
-              </div>
-            </div>
+            <ToggleSwitch
+              label="Auto Start Breaks"
+              checked={localSettings.autoStartBreaks}
+              onChange={(checked) => handleChange("autoStartBreaks", checked)}
+            />
 
-            <div
-              className="flex items-center justify-between cursor-pointer"
-              onClick={() =>
-                handleChange('autoStartPomodoros', !localSettings.autoStartPomodoros)
+            <ToggleSwitch
+              label="Auto Start Pomo"
+              checked={localSettings.autoStartPomodoros}
+              onChange={(checked) =>
+                handleChange("autoStartPomodoros", checked)
               }
-            >
-              <h3 className="text-xs uppercase">Auto Start Pomo</h3>
-              <div
-                className={`w-4 h-4 border-2 border-[#0f380f] flex items-center justify-center ${
-                  localSettings.autoStartPomodoros ? 'bg-[#0f380f]' : 'bg-[#9bbc0f]'
-                }`}
-              >
-                {localSettings.autoStartPomodoros && (
-                  <div className="w-2 h-2 bg-[#9bbc0f]"></div>
-                )}
-              </div>
-            </div>
+            />
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="px-4 py-4 flex justify-end mt-4">
-          <button
-            onClick={handleSave}
-            className="bg-[#0f380f] text-[#9bbc0f] text-xs uppercase py-3 px-6 hover:bg-[#2d2d2d] transition-colors border-2 border-transparent hover:border-[#9bbc0f]"
-          >
-            Save Changes
-          </button>
-        </div>
+        <ModalFooter onSave={handleSave} />
       </div>
     </div>
   );
 };
-

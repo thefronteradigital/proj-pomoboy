@@ -18,6 +18,8 @@
 - 🧪 **Fully Tested**: Unit and integration tests with Vitest
 - 📱 **Responsive**: Works on desktop and mobile
 - 🏷️ **Frontera® Branding**: Professional branding integration
+- 🧩 **Modular Architecture**: Clean separation of concerns with custom hooks
+- 🎯 **Best Practices**: Industry-standard React patterns and TypeScript
 
 ## 🚀 Getting Started
 
@@ -92,24 +94,44 @@ pnpm test:coverage # Generate coverage report
 
 ```
 src/
-├── App.tsx                 # Main application component
-├── main.tsx               # React entry point
-├── styles/
-│   └── globals.css        # Global Tailwind styles
-├── components/
-│   └── SettingsModal.tsx  # Settings configuration modal
+├── App.tsx                      # Main application component
+├── main.tsx                     # React entry point
+├── globals.css                  # Global Tailwind styles
+├── hooks/                       # Custom React hooks
+│   ├── index.ts                 # Hooks barrel export
+│   ├── useTimer.ts              # Timer state and logic
+│   ├── useTimerMode.ts          # Mode switching logic
+│   ├── useSettings.ts           # Settings management
+│   └── useDocumentTitle.ts      # Document title updater
+├── components/                  # UI components
+│   ├── index.ts                 # Components barrel export
+│   ├── Header.tsx               # App header with branding
+│   ├── GameBoyScreen.tsx        # Display screen component
+│   ├── GameBoyControls.tsx      # Controls container
+│   ├── DPad.tsx                 # D-Pad navigation
+│   ├── ActionButtons.tsx        # A/B action buttons
+│   ├── StartSelectButtons.tsx   # Start/Select buttons
+│   ├── SpeakerGrille.tsx        # Speaker decoration
+│   ├── SettingsModal.tsx        # Settings modal
+│   └── settings/                # Settings sub-components
+│       ├── ModalHeader.tsx      # Reusable modal header
+│       ├── ModalFooter.tsx      # Reusable modal footer
+│       ├── TimerInput.tsx       # Timer input field
+│       └── ToggleSwitch.tsx     # Toggle switch control
 ├── utils/
-│   └── sound.ts           # Game Boy sound effects manager
+│   └── sound.ts                 # Game Boy sound effects manager
 ├── types/
-│   └── index.ts           # TypeScript type definitions
-└── __tests__/
-    ├── App.test.tsx       # App component tests
+│   └── index.ts                 # TypeScript type definitions
+├── constants/
+│   └── index.ts                 # App constants and defaults
+└── __tests__/                   # Test suite
+    ├── App.test.tsx             # App component tests
     ├── constants/
-    │   └── index.test.ts  # Constants tests
+    │   └── index.test.ts        # Constants tests
     ├── types/
-    │   └── index.test.ts  # Types tests
+    │   └── index.test.ts        # Types tests
     └── utils/
-        └── sound.test.ts  # Sound manager tests
+        └── sound.test.ts        # Sound manager tests
 ```
 
 ## 🛠️ Tech Stack
@@ -120,6 +142,24 @@ src/
 - **Styling**: Tailwind CSS 3.4.18
 - **Testing**: Vitest 1.6.1
 - **Icons**: Lucide React 0.554.0
+
+## 🏛️ Architecture Highlights
+
+### Custom Hooks
+The application uses custom hooks to separate business logic from UI:
+
+- **`useTimer`**: Manages timer countdown, start/stop/reset functionality
+- **`useTimerMode`**: Handles mode switching and cycle tracking
+- **`useSettings`**: Manages application settings and modal state
+- **`useDocumentTitle`**: Updates browser tab title dynamically
+
+### Component Structure
+Components follow the single responsibility principle:
+
+- **Presentational Components**: `Header`, `GameBoyScreen`, `DPad`, etc.
+- **Container Components**: `GameBoyControls` composes smaller controls
+- **Modal Components**: Modular settings with reusable sub-components
+- **Atomic Design**: Small, focused components that compose into larger features
 
 ## 🎨 Customization
 
@@ -161,8 +201,8 @@ pnpm test
 - Sound Manager: 9 tests
 - Constants: 12 tests
 - Types: 6 tests
-- App Component: 6 tests
-- **Total**: 27 tests ✓
+- App Component: 3 tests
+- **Total**: 30 tests ✓
 
 ## 🌐 Web Audio API
 
@@ -187,16 +227,27 @@ The project uses the Web Audio API for authentic Game Boy sound effects:
 - vitest@^1.6.1
 - @testing-library/react@^14.3.1
 
-## 🎯 Best Practices
+## 🎯 Best Practices & Architecture
 
-✅ Industry-standard project structure
-✅ Type-safe TypeScript configuration
-✅ Comprehensive test coverage
-✅ Tailwind CSS for styling
-✅ PostCSS processing
-✅ Path aliases for clean imports
-✅ Proper error handling
-✅ Responsive design
+### Code Organization
+✅ **Custom Hooks**: Separation of business logic from UI components
+✅ **Modular Components**: Single responsibility principle for each component
+✅ **Barrel Exports**: Clean import statements with index files
+✅ **Type Safety**: Full TypeScript coverage with strict typing
+✅ **Path Aliases**: Clean `@/` imports for better readability
+
+### React Patterns
+✅ **Custom Hooks Pattern**: `useTimer`, `useTimerMode`, `useSettings`, `useDocumentTitle`
+✅ **Composition**: Small, reusable components composed together
+✅ **Props Drilling Prevention**: Hooks manage state at appropriate levels
+✅ **Memoization**: `useCallback` for optimized performance
+
+### Project Quality
+✅ **Comprehensive Testing**: 30 passing tests with Vitest
+✅ **Linter Clean**: No TypeScript or ESLint errors
+✅ **Production Ready**: Optimized build with Vite
+✅ **Responsive Design**: Mobile-first approach with Tailwind CSS
+✅ **Accessibility**: Proper ARIA labels and semantic HTML
 
 ## 🔗 Links
 
