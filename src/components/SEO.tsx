@@ -65,7 +65,10 @@ export const SEO: React.FC<SEOProps> = ({
       {/* Additional Meta Tags */}
       <meta name="theme-color" content="#9bbc0f" />
       <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
+      />
       <meta name="apple-mobile-web-app-title" content="Pomoboy" />
       <meta name="application-name" content="Pomoboy" />
       <meta name="msapplication-TileColor" content="#9bbc0f" />
@@ -101,4 +104,3 @@ export const SEO: React.FC<SEOProps> = ({
     </Helmet>
   );
 };
-
