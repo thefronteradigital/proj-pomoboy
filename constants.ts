@@ -1,4 +1,4 @@
-import { Settings, TimerMode } from './types';
+import { Settings, TimerMode } from "./types";
 
 export const DEFAULT_SETTINGS: Settings = {
   pomodoro: 25,
@@ -10,7 +10,7 @@ export const DEFAULT_SETTINGS: Settings = {
 };
 
 export const MODE_LABELS: Record<TimerMode, string> = {
-  pomodoro: 'FOCUS',
-  shortBreak: 'BREAK',
-  longBreak: 'LONG BREAK',
+  pomodoro: "POMODORO",
+  shortBreak: "SHORT BREAK",
+  longBreak: "LONG BREAK",
 };

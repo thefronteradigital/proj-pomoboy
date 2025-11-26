@@ -3,6 +3,7 @@ import { Settings, TimerMode } from './types';
 import { DEFAULT_SETTINGS, MODE_LABELS } from './constants';
 import { SettingsModal } from './components/SettingsModal';
 import { Battery, Volume2 } from 'lucide-react';
+import { soundManager } from './utils/sound';
 
 const App: React.FC = () => {
   const [mode, setMode] = useState<TimerMode>('pomodoro');
@@ -25,6 +26,7 @@ const App: React.FC = () => {
   }, [timeLeft, mode]);
 
   const switchMode = useCallback((newMode: TimerMode) => {
+    soundManager.playModeChangeSound();
     setMode(newMode);
     // Don't restart time if we are just updating settings but not switching
     const newDuration = settings[newMode] * 60;
@@ -47,6 +49,7 @@ const App: React.FC = () => {
   };
 
   const handleTimerComplete = useCallback(() => {
+    soundManager.playTimerCompleteSound();
     setIsActive(false);
     if (timerRef.current) clearInterval(timerRef.current);
 
@@ -99,10 +102,17 @@ const App: React.FC = () => {
   }, [isActive, handleTimerComplete, timeLeft]); // Re-added timeLeft to dep array to keep logic clean, though typically handled via ref for tick.
 
   const toggleTimer = () => {
-    setIsActive(!isActive);
+    const newState = !isActive;
+    if (newState) {
+      soundManager.playStartSound();
+    } else {
+      soundManager.playStopSound();
+    }
+    setIsActive(newState);
   };
 
   const resetTimer = () => {
+    soundManager.playResetSound();
     setIsActive(false);
     if (timerRef.current) clearInterval(timerRef.current);
     setTimeLeft(settings[mode] * 60);
@@ -218,12 +228,12 @@ const App: React.FC = () => {
 
                    {/* Click Areas */}
                    <button 
-                    onClick={handlePrevMode}
+                    onClick={() => { soundManager.playButtonSound(); handlePrevMode(); }}
                     className="absolute top-[30px] left-0 w-[30px] h-[30px] active:scale-95 active:bg-black/50 hover:bg-white/5"
                     aria-label="Previous Mode"
                    />
                    <button 
-                    onClick={handleNextMode}
+                    onClick={() => { soundManager.playButtonSound(); handleNextMode(); }}
                     className="absolute top-[30px] right-0 w-[30px] h-[30px] active:scale-95 active:bg-black/50 hover:bg-white/5"
                     aria-label="Next Mode"
                    />
@@ -257,7 +267,7 @@ const App: React.FC = () => {
           <div className="flex justify-center gap-6 mt-12 transform -rotate-12">
              <div className="flex flex-col items-center gap-1">
                 <button 
-                  onClick={() => setIsSettingsOpen(true)}
+                  onClick={() => { soundManager.playButtonSound(); setIsSettingsOpen(true); }}
                   className="w-12 h-3 bg-gb-dark rounded-full shadow-[1px_1px_0_rgba(0,0,0,0.2)] active:shadow-none active:translate-y-[1px] hover:bg-black"
                 ></button>
                 <span className="text-[10px] font-bold text-gb-dark tracking-widest">SELECT</span>
