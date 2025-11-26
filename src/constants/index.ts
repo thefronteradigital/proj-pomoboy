@@ -20,7 +20,7 @@ export const DEFAULT_SETTINGS: Settings = {
  * Display labels for timer modes
  */
 export const MODE_LABELS: Record<TimerMode, string> = {
-  pomodoro: "FOCUS",
-  shortBreak: "BREAK",
+  pomodoro: "POMODORO",
+  shortBreak: "SHORT BREAK",
   longBreak: "LONG BREAK",
 };
