@@ -7,10 +7,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
 dist
 dist-ssr
 *.local
+
+# Environment variables - NEVER commit sensitive data
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.production.local
+.env.test.local
 
 # Editor directories and files
 .vscode/*
@@ -22,3 +31,32 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# IDE and OS files
+*.iml
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+Thumbs.db
+
+# Secret files
+*.key
+*.pem
+*.pfx
+.ssh/
+
+# Build output
+dist/
+build/
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+
+# Cache
+.cache/
+.eslintcache

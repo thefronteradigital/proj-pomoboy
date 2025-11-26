@@ -1,33 +1,32 @@
-import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
-import { VitePWA } from 'vite-plugin-pwa';
+import path from "path";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import { VitePWA } from "vite-plugin-pwa";
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, '.', '');
+export default defineConfig(() => {
   return {
-    root: '.',
-    publicDir: 'public',
-    base: '/',
+    root: ".",
+    publicDir: "public",
+    base: "/",
     server: {
       port: 3000,
-      host: '0.0.0.0',
+      host: "0.0.0.0",
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
       },
       mime: {
-        '.xml': 'application/xml; charset=UTF-8',
+        ".xml": "application/xml; charset=UTF-8",
       },
     },
     build: {
-      outDir: 'dist',
-      assetsDir: 'assets',
+      outDir: "dist",
+      assetsDir: "assets",
       sourcemap: false,
-      minify: 'esbuild',
+      minify: "esbuild",
       rollupOptions: {
         output: {
           manualChunks: {
-            vendor: ['react', 'react-dom'],
+            vendor: ["react", "react-dom"],
           },
         },
       },
@@ -35,45 +34,46 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       VitePWA({
-        registerType: 'autoUpdate',
-        includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'robots.txt'],
+        registerType: "autoUpdate",
+        includeAssets: ["favicon.ico", "apple-touch-icon.png", "robots.txt"],
         manifest: {
-          name: 'Pomoboy - Game Boy Pomodoro Timer',
-          short_name: 'Pomoboy',
-          description: 'A retro Game Boy-styled Pomodoro timer for productivity',
-          theme_color: '#9bbc0f',
-          background_color: '#9bbc0f',
-          display: 'standalone',
-          orientation: 'portrait',
-          scope: '/',
-          start_url: '/',
+          name: "Pomoboy - Game Boy Pomodoro Timer",
+          short_name: "Pomoboy",
+          description:
+            "A retro Game Boy-styled Pomodoro timer for productivity",
+          theme_color: "#9bbc0f",
+          background_color: "#9bbc0f",
+          display: "standalone",
+          orientation: "portrait",
+          scope: "/",
+          start_url: "/",
           icons: [
             {
-              src: 'pwa-192x192.png',
-              sizes: '192x192',
-              type: 'image/png',
+              src: "pwa-192x192.png",
+              sizes: "192x192",
+              type: "image/png",
             },
             {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
+              src: "pwa-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
             },
             {
-              src: 'pwa-512x512.png',
-              sizes: '512x512',
-              type: 'image/png',
-              purpose: 'any maskable',
+              src: "pwa-512x512.png",
+              sizes: "512x512",
+              type: "image/png",
+              purpose: "any maskable",
             },
           ],
         },
         workbox: {
-          globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+          globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2}"],
           runtimeCaching: [
             {
               urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-              handler: 'CacheFirst',
+              handler: "CacheFirst",
               options: {
-                cacheName: 'google-fonts-cache',
+                cacheName: "google-fonts-cache",
                 expiration: {
                   maxEntries: 10,
                   maxAgeSeconds: 60 * 60 * 24 * 365, // 1 year
@@ -87,13 +87,9 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
-    define: {
-      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-    },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        "@": path.resolve(__dirname, "./src"),
       },
     },
   };
