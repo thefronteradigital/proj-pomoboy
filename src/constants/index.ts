@@ -2,7 +2,7 @@
  * Application constants and configuration
  */
 
-import type { Settings, TimerMode } from "../types";
+import type { Settings, TimerMode } from "@/types";
 
 /**
  * Default timer settings for each mode

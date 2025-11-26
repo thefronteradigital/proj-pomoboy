@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
-import type { Settings } from '../types';
+import type { Settings } from "@/types";
 
 interface SettingsModalProps {
   isOpen: boolean;

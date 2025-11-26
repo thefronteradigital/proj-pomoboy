@@ -41,11 +41,11 @@ describe("Constants", () => {
 
   describe("MODE_LABELS", () => {
     it("should have label for pomodoro mode", () => {
-      expect(MODE_LABELS.pomodoro).toBe("FOCUS");
+      expect(MODE_LABELS.pomodoro).toBe("POMODORO");
     });
 
     it("should have label for short break mode", () => {
-      expect(MODE_LABELS.shortBreak).toBe("BREAK");
+      expect(MODE_LABELS.shortBreak).toBe("SHORT BREAK");
     });
 
     it("should have label for long break mode", () => {

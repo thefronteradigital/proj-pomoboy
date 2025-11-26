@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import type { Settings, TimerMode } from './types';
-import { DEFAULT_SETTINGS, MODE_LABELS } from './constants';
-import { SettingsModal } from './components/SettingsModal';
-import { soundManager } from './utils/sound';
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import type { Settings, TimerMode } from "@/types";
+import { DEFAULT_SETTINGS, MODE_LABELS } from "@/constants";
+import { SettingsModal } from "@/components/SettingsModal";
+import { soundManager } from "@/utils/sound";
 
 const App: React.FC = () => {
   const [mode, setMode] = useState<TimerMode>('pomodoro');

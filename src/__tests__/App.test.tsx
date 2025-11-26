@@ -32,10 +32,10 @@ describe("App Component", () => {
     expect(link).toHaveAttribute("target", "_blank");
   });
 
-  it("should have initial FOCUS mode", () => {
+  it("should have initial POMODORO mode", () => {
     render(<App />);
-    const focusMode = screen.getByText(/POMO/i);
-    expect(focusMode).toBeInTheDocument();
+    const pomoMode = screen.getByText(/POMO/i);
+    expect(pomoMode).toBeInTheDocument();
   });
 });
 
