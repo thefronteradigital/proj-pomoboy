@@ -1,12 +1,5 @@
-<div align="center">
-  <h1>🎮 Pomoboy - Game Boy Pomodoro Timer</h1>
-  <p>A retro Game Boy-styled Pomodoro timer built with React, Vite, and TypeScript</p>
-  
-  ![Pomoboy](https://img.shields.io/badge/Status-Active-brightgreen)
-  ![React](https://img.shields.io/badge/React-19.2.0-blue)
-  ![Vite](https://img.shields.io/badge/Vite-6.4.1-purple)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue)
-</div>
+🎮 Pomoboy - Game Boy Pomodoro Timer
+A retro Game Boy-styled Pomodoro timer built with React, Vite, and TypeScript
 
 ## ✨ Features
 
